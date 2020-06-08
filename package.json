@@ -11,5 +11,8 @@
     "url": "git+https://github.com/HoseungJang/CoNote.git"
   },
   "author": "HoseungJang",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "monaco-editor": "^0.20.0"
+  }
 }
