@@ -9,7 +9,7 @@ export class App {
         this.app = express();
 
         this.app.use(morgan("dev"));
-        this.app.use(express.static(path.join(__dirname, "public/js")));
+        this.app.use(express.static(path.join(__dirname, "public")));
         this.app.use(express.static(path.join(__dirname, "views")));
         this.app.use(express.static(path.join(__dirname, "../node_modules")));
     }
