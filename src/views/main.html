@@ -14,7 +14,7 @@
 <body>
 
 <h2 class="title">CoNote</h2>
-<select class="title">
+<select id="theme" class="title" onchange="onThemeChanged()">
 	<option value="vs">white</option>
 	<option value="vs-dark">dark</option>
 </select>
@@ -22,6 +22,7 @@
 <div id="container" style="width:90%;height:85%;border:1px solid grey"></div>
 
 <script src="/js/editor.js"></script>
+<script src="/js/onThemeChanged.js"></script>
 
 </body>
 </html>
