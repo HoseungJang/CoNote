@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as morgan from "morgan";
 import * as path from "path";
+import redirectRouter from "./routers";
 
 export class App {
     private app: express.Application;
@@ -12,6 +13,8 @@ export class App {
         this.app.use(express.static(path.join(__dirname, "public")));
         this.app.use(express.static(path.join(__dirname, "views")));
         this.app.use(express.static(path.join(__dirname, "../node_modules")));
+        
+        this.app.use(redirectRouter);
     }
 
     public getApp(): express.Application {
