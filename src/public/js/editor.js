@@ -20,8 +20,17 @@ require(['vs/editor/editor.main'], function () {
 
     socket.on("changeContent", (e) => {
         const selection = editor.getSelection();
+        const changedStart = e.changes[0].range.startLineNumber;
 
         isChangedBySocket = true;
+
+        if (changedStart <= selection.startLineNumber) {
+            const newLineCount = e.changes[0].text.length - 1;
+            
+            selection.selectionStartLineNumber += newLineCount;
+            selection.positionLineNumber += newLineCount;
+        }
+
         editor.getModel().applyEdits(e.changes);
         editor.setSelection(selection);
     });
