@@ -10,9 +10,14 @@ export class Socket {
         this.io = socketio.listen(this.server);
 
         this.io.on("connection", (socket: socketio.Socket) => {
-            console.log("asdf");
+            console.log(`[CONNECT] ${socket.id} is connected`);
+
             socket.on("changeContent", (e) => {
                 socket.broadcast.emit("changeContent", e);
+            });
+
+            socket.on("disconnect", () => {
+                console.log(`[DISCONNECT] ${socket.id} is disconnected`)
             });
         });
     }
