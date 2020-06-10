@@ -20,12 +20,14 @@ require(['vs/editor/editor.main'], function () {
 
     socket.on("changeContent", (e) => {
         const selection = editor.getSelection();
-        const changedStart = e.changes[0].range.startLineNumber;
+        const changedText = e.changes[0].text;
+        const changedTextRange = e.changes[0].range;
 
         isChangedBySocket = true;
 
-        if (changedStart <= selection.startLineNumber) {
-            const newLineCount = e.changes[0].text.length - 1;
+        if (changedTextRange.endLineNumber <= selection.startLineNumber) {
+            const MatchedNewLine = changedText.match(/\n/g);
+            const newLineCount = MatchedNewLine ? MatchedNewLine.length : 0;
             
             selection.selectionStartLineNumber += newLineCount;
             selection.positionLineNumber += newLineCount;
